@@ -16,17 +16,17 @@ static void mqttCallback(char *topic, byte *payload, unsigned int length) {
     Serial.print((char)payload[i]);
   }
   Serial.println();
-  // Sau này anh xử lý logic điều khiển từ xa ở đây
+
 }
 
 void mqtt_connect() {
-  wifiClient.setInsecure(); // demo: bỏ kiểm chứng CA
+  wifiClient.setInsecure(); 
 
   mqtt.setServer(MQTT_BROKER, MQTT_PORT);
   mqtt.setCallback(mqttCallback);
 
   while (!mqtt.connected()) {
-    wifi_loop(); // đảm bảo đang có WiFi
+    wifi_loop(); 
 
     Serial.print(F("Dang ket noi MQTT toi HiveMQ... "));
 
@@ -37,8 +37,7 @@ void mqtt_connect() {
     if (ok) {
       Serial.println(F("THANH CONG"));
       mqtt.publish(TOPIC_TEST, "ESP32 connected!", true);
-      // ví dụ subscribe sau này:
-      // mqtt.subscribe("med/reminder/set");
+    
     } else {
       Serial.print(F("THAT BAI, rc="));
       Serial.print(mqtt.state());

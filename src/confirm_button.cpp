@@ -1,4 +1,3 @@
-// confirm_button.cpp
 #include "confirm_button.h"
 #include "config.h"
 
@@ -30,8 +29,7 @@ bool button_update() {
   if (millis() - gLastChangeMs > DEBOUNCE_MS) {
     if (reading != gLastStable) {
       gLastStable = reading;
-
-      // Chỉ bắt cạnh nhấn (từ HIGH -> LOW)
+      
       if (gLastStable == LOW) {
         return true;
       }

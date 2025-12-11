@@ -1,6 +1,5 @@
-// reed_sensor.cpp
 #include "reed_sensor.h"
-#include "config.h"   // dùng DEBOUNCE_MS
+#include "config.h"  
 
 namespace {
   uint8_t gReedPin = 4;
@@ -30,13 +29,13 @@ bool reed_update() {
   if (millis() - gLastChangeMs > DEBOUNCE_MS) {
     if (reading != gLastStable) {
       gLastStable = reading;
-      return true;  // trạng thái đã đổi (MỞ/ĐÓNG)
+      return true;  
     }
   }
   return false;
 }
 
 bool reed_isOpen() {
-  // Với INPUT_PULLUP: HIGH = MỞ, LOW = ĐÓNG
+
   return (gLastStable == HIGH);
 }

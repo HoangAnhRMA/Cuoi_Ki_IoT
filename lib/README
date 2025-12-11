@@ -25,4 +25,6 @@ Hệ thống dùng kết hợp:
 - **HiveMQ Cloud (MQTT over TLS)**: broker trung gian.
 - **Node-RED + Dashboard**: UI theo dõi trạng thái & lịch sử uống thuốc.
 
+[Link Drive demo sản phẩm](https://drive.google.com/file/d/1Z9Mc3b3uoHpIvsy32TIeBhGtv2o-JxgE/view?usp=sharing)
+
 
