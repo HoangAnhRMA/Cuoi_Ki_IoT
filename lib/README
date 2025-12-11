@@ -1,0 +1,28 @@
+
+
+Project cuối kỳ môn IoT: Hộp thuốc thông minh nhắc uống thuốc đúng giờ, đồng bộ trạng thái lên MQTT (HiveMQ Cloud) và hiển thị trên Node-RED Dashboard.
+
+
+## 1. Mục tiêu & Ý tưởng
+
+Nhiều người lớn tuổi hay quên uống thuốc đúng giờ, có thể ảnh hưởng tới sức khỏe.  
+Hộp thuốc này hỗ trợ:
+
+- Nhắc người dùng mở nắp – lấy thuốc – bấm nút xác nhận.
+- Nếu đã bấm xác nhận mà sau **10 giây nắp vẫn đóng**, còi sẽ kêu nhắc cho đến khi người dùng mở hộp.
+- Ghi log số lần uống trong ngày, trạng thái nắp và thời điểm xác nhận lên dashboard để theo dõi từ điện thoại / máy tính.
+
+Nguyên lý
+
+- Người dùng mở nắp hộp --> lấy thuốc --> bấm xác nhận đã uống thuốc ( button ) --> đóng nắp hộp.
+- Trong khoảng thời gian mở nắp hộp, đèn LED sẽ sáng để nhắc người dùng bấm button xác nhận uống thuốc trước khi đóng nắp hộp
+- Sau khoảng thời gian quy định (ở đây em đặt là 10s) thì buzzer sẽ kêu đến khi người dùng mở nắp.
+- Khi hộp đang đóng, bấm button sẽ không được và khi đã xác nhận uống thuốc 1 lần rồi thì nếu bấm lần thứ 2 thì cũng sẽ không có gì xảy ra
+
+Hệ thống dùng kết hợp:
+
+- **ESP32**: đọc cảm biến, điều khiển LED, buzzer, gửi dữ liệu MQTT.
+- **HiveMQ Cloud (MQTT over TLS)**: broker trung gian.
+- **Node-RED + Dashboard**: UI theo dõi trạng thái & lịch sử uống thuốc.
+
+

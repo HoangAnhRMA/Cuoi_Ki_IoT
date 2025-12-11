@@ -1,0 +1,530 @@
+[
+    {
+        "id": "487a207a097581f8",
+        "type": "tab",
+        "label": "Flow 1",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "7a793aaa404a421a",
+        "type": "mqtt-broker",
+        "name": "",
+        "broker": "ab481f25d392452bb38df3df6cf0b4ef.s1.eu.hivemq.cloud",
+        "port": "8883",
+        "tls": "",
+        "clientid": "",
+        "autoConnect": true,
+        "usetls": true,
+        "protocolVersion": 4,
+        "keepalive": 60,
+        "cleansession": true,
+        "autoUnsubscribe": true,
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthRetain": "false",
+        "birthPayload": "",
+        "birthMsg": {},
+        "closeTopic": "",
+        "closeQos": "0",
+        "closeRetain": "false",
+        "closePayload": "",
+        "closeMsg": {},
+        "willTopic": "",
+        "willQos": "0",
+        "willRetain": "false",
+        "willPayload": "",
+        "willMsg": {},
+        "userProps": "",
+        "sessionExpiry": ""
+    },
+    {
+        "id": "61310597a1ea4b6a",
+        "type": "ui_tab",
+        "name": "Medicine Box",
+        "icon": "dashboard",
+        "disabled": false,
+        "hidden": false
+    },
+    {
+        "id": "f627aca30d81c5ef",
+        "type": "ui_base",
+        "theme": {
+            "name": "theme-light",
+            "lightTheme": {
+                "default": "#0094CE",
+                "baseColor": "#0094CE",
+                "baseFont": "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif",
+                "edited": true,
+                "reset": false
+            },
+            "darkTheme": {
+                "default": "#097479",
+                "baseColor": "#097479",
+                "baseFont": "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif",
+                "edited": false
+            },
+            "customTheme": {
+                "name": "Untitled Theme 1",
+                "default": "#4B7930",
+                "baseColor": "#4B7930",
+                "baseFont": "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif"
+            },
+            "themeState": {
+                "base-color": {
+                    "default": "#0094CE",
+                    "value": "#0094CE",
+                    "edited": false
+                },
+                "page-titlebar-backgroundColor": {
+                    "value": "#0094CE",
+                    "edited": false
+                },
+                "page-backgroundColor": {
+                    "value": "#fafafa",
+                    "edited": false
+                },
+                "page-sidebar-backgroundColor": {
+                    "value": "#ffffff",
+                    "edited": false
+                },
+                "group-textColor": {
+                    "value": "#1bbfff",
+                    "edited": false
+                },
+                "group-borderColor": {
+                    "value": "#ffffff",
+                    "edited": false
+                },
+                "group-backgroundColor": {
+                    "value": "#ffffff",
+                    "edited": false
+                },
+                "widget-textColor": {
+                    "value": "#111111",
+                    "edited": false
+                },
+                "widget-backgroundColor": {
+                    "value": "#0094ce",
+                    "edited": false
+                },
+                "widget-borderColor": {
+                    "value": "#ffffff",
+                    "edited": false
+                },
+                "base-font": {
+                    "value": "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif"
+                }
+            },
+            "angularTheme": {
+                "primary": "indigo",
+                "accents": "blue",
+                "warn": "red",
+                "background": "grey",
+                "palette": "light"
+            }
+        },
+        "site": {
+            "name": "Node-RED Dashboard",
+            "hideToolbar": "false",
+            "allowSwipe": "false",
+            "lockMenu": "false",
+            "allowTempTheme": "true",
+            "dateFormat": "DD/MM/YYYY",
+            "sizes": {
+                "sx": 48,
+                "sy": 48,
+                "gx": 6,
+                "gy": 6,
+                "cx": 6,
+                "cy": 6,
+                "px": 0,
+                "py": 0
+            }
+        }
+    },
+    {
+        "id": "d82f606b39cbf22a",
+        "type": "ui_group",
+        "name": "Status",
+        "tab": "61310597a1ea4b6a",
+        "order": 2,
+        "disp": true,
+        "width": 6,
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "df43d9e504594251",
+        "type": "ui_group",
+        "name": "History",
+        "tab": "61310597a1ea4b6a",
+        "order": 2,
+        "disp": true,
+        "width": 6,
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "8ad12065817b3af5",
+        "type": "mqtt in",
+        "z": "487a207a097581f8",
+        "name": "",
+        "topic": "med/box/#",
+        "qos": "0",
+        "datatype": "auto-detect",
+        "broker": "7a793aaa404a421a",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 200,
+        "y": 240,
+        "wires": [
+            [
+                "8422f8cee011a4c9"
+            ]
+        ]
+    },
+    {
+        "id": "8422f8cee011a4c9",
+        "type": "switch",
+        "z": "487a207a097581f8",
+        "name": "",
+        "property": "topic",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "med/box/door",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "med/box/doseCount",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "med/box/confirm",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 3,
+        "x": 390,
+        "y": 240,
+        "wires": [
+            [
+                "170a6e48343397fd",
+                "0f2d31afbc719b25"
+            ],
+            [
+                "d5e96f873cc45c53"
+            ],
+            [
+                "2dbf17f2a4d3003b",
+                "2e614f8c812b8d3f"
+            ]
+        ]
+    },
+    {
+        "id": "170a6e48343397fd",
+        "type": "ui_text",
+        "z": "487a207a097581f8",
+        "group": "d82f606b39cbf22a",
+        "order": 0,
+        "width": 0,
+        "height": 0,
+        "name": "",
+        "label": "Door",
+        "format": "{{msg.payload}}",
+        "layout": "row-spread",
+        "className": "",
+        "style": false,
+        "font": "",
+        "fontSize": 16,
+        "color": "#000000",
+        "x": 570,
+        "y": 180,
+        "wires": []
+    },
+    {
+        "id": "d5e96f873cc45c53",
+        "type": "ui_gauge",
+        "z": "487a207a097581f8",
+        "name": "",
+        "group": "d82f606b39cbf22a",
+        "order": 1,
+        "width": 0,
+        "height": 0,
+        "gtype": "gage",
+        "title": "Doses Today",
+        "label": "times",
+        "format": "{{value}}",
+        "min": 0,
+        "max": "15",
+        "colors": [
+            "#00b500",
+            "#e6e600",
+            "#ca3838"
+        ],
+        "seg1": "",
+        "seg2": "",
+        "diff": false,
+        "className": "",
+        "x": 590,
+        "y": 240,
+        "wires": []
+    },
+    {
+        "id": "2dbf17f2a4d3003b",
+        "type": "function",
+        "z": "487a207a097581f8",
+        "name": "function 1",
+        "func": "let logs = context.get(\"logs\") || [];\n\nconst now = new Date();\nconst timeStr = now.toLocaleString();\n\nlogs.unshift({\n    time: timeStr,\n    event: msg.payload || \"TAKEN\"\n});\n\nlogs = logs.slice(0, 50);\ncontext.set(\"logs\", logs);\n\nmsg.payload = logs;\nreturn msg;\n",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 580,
+        "y": 300,
+        "wires": [
+            [
+                "4ae58e6d879e885d"
+            ]
+        ]
+    },
+    {
+        "id": "4ae58e6d879e885d",
+        "type": "ui_table",
+        "z": "487a207a097581f8",
+        "group": "df43d9e504594251",
+        "name": "Confirm Log",
+        "order": 0,
+        "width": "6",
+        "height": "11",
+        "columns": [
+            {
+                "field": "time",
+                "title": "Time",
+                "width": "",
+                "align": "left",
+                "formatter": "plaintext",
+                "formatterParams": {
+                    "target": "_blank"
+                }
+            },
+            {
+                "field": "event",
+                "title": "Event",
+                "width": "",
+                "align": "left",
+                "formatter": "plaintext",
+                "formatterParams": {
+                    "target": "_blank"
+                }
+            }
+        ],
+        "outputs": 0,
+        "cts": false,
+        "x": 790,
+        "y": 300,
+        "wires": []
+    },
+    {
+        "id": "fc960f1b276b5925",
+        "type": "function",
+        "z": "487a207a097581f8",
+        "name": "function 2",
+        "func": "// Countdown dạng MM:SS (rất hợp cho 10 giây)\n\nconst totalSec = 10;\n\nmsg.payload = Array.from({ length: totalSec + 1 }, (_, i) => {\n    const r = totalSec - i;\n    const m = Math.floor(r / 60);\n    const s = r % 60;\n    return `${String(m).padStart(2, \"0\")}:${String(s).padStart(2, \"0\")}`;\n});\n\nreturn msg;\n\n",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 580,
+        "y": 360,
+        "wires": [
+            [
+                "835eca45a3b38aad"
+            ]
+        ]
+    },
+    {
+        "id": "28182d0394b46c85",
+        "type": "delay",
+        "z": "487a207a097581f8",
+        "name": "",
+        "pauseType": "rate",
+        "timeout": "1",
+        "timeoutUnits": "seconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "allowrate": false,
+        "outputs": 1,
+        "x": 930,
+        "y": 360,
+        "wires": [
+            [
+                "460eed4f1225ca3e"
+            ]
+        ]
+    },
+    {
+        "id": "835eca45a3b38aad",
+        "type": "split",
+        "z": "487a207a097581f8",
+        "name": "",
+        "splt": "\\n",
+        "spltType": "str",
+        "arraySplt": 1,
+        "arraySpltType": "len",
+        "stream": false,
+        "addname": "",
+        "property": "payload",
+        "x": 750,
+        "y": 360,
+        "wires": [
+            [
+                "28182d0394b46c85"
+            ]
+        ]
+    },
+    {
+        "id": "460eed4f1225ca3e",
+        "type": "ui_text",
+        "z": "487a207a097581f8",
+        "group": "d82f606b39cbf22a",
+        "order": 2,
+        "width": 0,
+        "height": 0,
+        "name": "",
+        "label": "Countdown",
+        "format": "{{msg.payload}}",
+        "layout": "row-spread",
+        "className": "",
+        "style": false,
+        "font": "",
+        "fontSize": 16,
+        "color": "#000000",
+        "x": 1110,
+        "y": 360,
+        "wires": []
+    },
+    {
+        "id": "dec5604ff73cae21",
+        "type": "change",
+        "z": "487a207a097581f8",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "--",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 760,
+        "y": 100,
+        "wires": [
+            [
+                "460eed4f1225ca3e"
+            ]
+        ]
+    },
+    {
+        "id": "0f2d31afbc719b25",
+        "type": "switch",
+        "z": "487a207a097581f8",
+        "name": "",
+        "property": "payload",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "OPEN",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 570,
+        "y": 100,
+        "wires": [
+            [
+                "dec5604ff73cae21",
+                "9549149e51afaf91"
+            ]
+        ]
+    },
+    {
+        "id": "9549149e51afaf91",
+        "type": "change",
+        "z": "487a207a097581f8",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "reset",
+                "pt": "msg",
+                "to": "true",
+                "tot": "bool"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 760,
+        "y": 180,
+        "wires": [
+            [
+                "28182d0394b46c85"
+            ]
+        ]
+    },
+    {
+        "id": "2e614f8c812b8d3f",
+        "type": "switch",
+        "z": "487a207a097581f8",
+        "name": "Only Taken",
+        "property": "payload",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "TAKEN",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 410,
+        "y": 360,
+        "wires": [
+            [
+                "fc960f1b276b5925"
+            ]
+        ]
+    }
+]
